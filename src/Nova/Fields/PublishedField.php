@@ -44,6 +44,4 @@ class PublishedField extends Field
             'draftParent' => $resource->draftParent
         ]);
     }
-
-
 }

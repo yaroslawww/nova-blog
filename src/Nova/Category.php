@@ -2,15 +2,13 @@
 
 namespace OptimistDigital\NovaBlog\Nova;
 
-use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use OptimistDigital\NovaBlog\Nova\Fields\Slug;
 
 class Category extends TemplateResource
 {
-
     public static $displayInNavigation = false;
     /**
      * The model the resource corresponds to.

@@ -1,8 +1,8 @@
 <?php
 
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 use OptimistDigital\NovaBlog\NovaBlog;
 
 class AddDraftsToPostsTable extends Migration

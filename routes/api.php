@@ -15,4 +15,3 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('/publish/{postId}', 'OptimistDigital\NovaBlog\Http\PostController@publishPost');
-

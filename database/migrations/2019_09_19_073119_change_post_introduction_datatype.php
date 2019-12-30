@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class ChangePostIntroductionDatatype extends Migration
 {
@@ -13,7 +13,6 @@ class ChangePostIntroductionDatatype extends Migration
      */
     public function up()
     {
-
         $table = config('nova-blog.table', 'nova_blog_posts');
 
         Schema::table($table, function (Blueprint $table) {

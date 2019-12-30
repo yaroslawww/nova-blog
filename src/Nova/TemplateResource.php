@@ -10,11 +10,15 @@ abstract class TemplateResource extends Resource
 
     protected function getTemplateClass()
     {
-        if (isset($this->templateClass)) return $this->templateClass;
+        if (isset($this->templateClass)) {
+            return $this->templateClass;
+        }
 
         if (isset($this->template)) {
             foreach ($templates as $template) {
-                if ($template::$name == $this->template) $this->templateClass = new $template($this->resource);
+                if ($template::$name == $this->template) {
+                    $this->templateClass = new $template($this->resource);
+                }
             }
         }
         return $this->templateClass;

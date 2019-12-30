@@ -3,24 +3,24 @@
 namespace OptimistDigital\NovaBlog\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Http\Requests\ResourceDetailRequest;
 use Laravel\Nova\Panel;
 use OptimistDigital\NovaBlog\Nova\Fields\DraftButton;
-use OptimistDigital\NovaBlog\NovaBlog;
 use OptimistDigital\NovaBlog\Nova\Fields\PublishedField;
-use Whitecube\NovaFlexibleContent\Flexible;
-use Laravel\Nova\Fields\Markdown;
-use Laravel\Nova\Fields\DateTime;
 use OptimistDigital\NovaBlog\Nova\Fields\Slug;
 use OptimistDigital\NovaBlog\Nova\Fields\Title;
+use OptimistDigital\NovaBlog\NovaBlog;
+use Whitecube\NovaFlexibleContent\Flexible;
 
 class Post extends TemplateResource
 {
@@ -50,7 +50,9 @@ class Post extends TemplateResource
                 $pageUrl = !empty($pageBaseUrl) ? $pageBaseUrl . $previewPart : null;
                 $buttonText = $this->resource->isDraft() ? 'View draft' : 'View';
 
-                if (empty($pageBaseUrl)) return "<span class='bg-40 text-sm py-1 px-2 rounded-lg whitespace-no-wrap'>$pagePath</span>";
+                if (empty($pageBaseUrl)) {
+                    return "<span class='bg-40 text-sm py-1 px-2 rounded-lg whitespace-no-wrap'>$pagePath</span>";
+                }
 
                 return "<div class='whitespace-no-wrap'>
                             <span class='bg-40 text-sm py-1 px-2 rounded-lg'>$pagePath</span>
@@ -127,9 +129,10 @@ class Post extends TemplateResource
     {
         $column = NovaBlog::getPostsTableName() . '.locale';
         $query->doesntHave('childDraft');
-        if (NovaBlog::hasNovaLang())
+        if (NovaBlog::hasNovaLang()) {
             $query->where($column, nova_lang_get_active_locale())
                 ->orWhereNotIn($column, array_keys(nova_lang_get_all_locales()));
+        }
         return $query;
     }
 }

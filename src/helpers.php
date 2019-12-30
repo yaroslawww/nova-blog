@@ -2,7 +2,6 @@
 
 use OptimistDigital\NovaBlog\Models\Post;
 
-
 // ------------------------------
 // nova_get_posts_structure
 // ------------------------------
@@ -27,12 +26,15 @@ if (!function_exists('nova_get_blog_structure')) {
 // ------------------------------
 
 if (!function_exists('nova_get_post_by_slug')) {
-
     function nova_get_post_by_slug($slug)
     {
-        if (empty($slug)) return null;
+        if (empty($slug)) {
+            return null;
+        }
         $post = Post::with('category')->where('published_at', '<', \DB::raw('NOW()'))->where('slug', $slug)->firstOrFail();
-        if (empty($post)) return null;
+        if (empty($post)) {
+            return null;
+        }
 
         $seo = [
             'title' => $post->seo_title,
@@ -67,12 +69,15 @@ if (!function_exists('nova_get_post_by_slug')) {
 // ------------------------------
 
 if (!function_exists('nova_get_post_by_id')) {
-
     function nova_get_post_by_id($postId)
     {
-        if (empty($postId)) return null;
+        if (empty($postId)) {
+            return null;
+        }
         $post = Post::with('category')->where('published_at', '<', \DB::raw('NOW()'))->find($postId);
-        if (empty($post)) return null;
+        if (empty($post)) {
+            return null;
+        }
 
         $seo = [
             'title' => $post->seo_title,
