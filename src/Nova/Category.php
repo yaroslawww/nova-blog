@@ -2,6 +2,7 @@
 
 namespace OptimistDigital\NovaBlog\Nova;
 
+use App\Validation\Rules\LowercaseRule;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -44,7 +45,7 @@ class Category extends TemplateResource
         return [
             ID::make()->sortable(),
             Text::make('Title', 'title'),
-            Slug::make('Slug', 'slug')->rules('required', 'alpha_dash_or_slash', 'lowercase_string'),
+            Slug::make('Slug', 'slug')->rules('required', 'alpha_dash_or_slash', new LowercaseRule),
         ];
     }
 
