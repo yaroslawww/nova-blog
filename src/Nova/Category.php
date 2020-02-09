@@ -2,11 +2,11 @@
 
 namespace OptimistDigital\NovaBlog\Nova;
 
-use App\Validation\Rules\LowercaseRule;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use OptimistDigital\NovaBlog\Nova\Fields\Slug;
+use OptimistDigital\NovaBlog\Validation\Rules\LowercaseRule;
 
 class Category extends TemplateResource
 {
